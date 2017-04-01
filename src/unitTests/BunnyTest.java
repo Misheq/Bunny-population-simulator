@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import bussiness_code.Bunny;
 import bussiness_code.FurColor;
-import bussiness_code.Gender;
 
 public class BunnyTest {
 
@@ -18,7 +17,7 @@ public class BunnyTest {
 
 	@Before
 	public void before() {
-		testBunny = new Bunny();
+		testBunny = new Bunny("segg");
 	}
 
 	@After
@@ -28,23 +27,16 @@ public class BunnyTest {
 
 	@Test
 	public void testSex() {
-		Gender sex = testBunny.getSex();
-		switch (sex) {
-		case Male:
-			assertEquals("Sex should match", Gender.Male, sex);
-			break;
-		case Female:
-			assertEquals("Sex should match", Gender.Female, sex);
-			break;
-		default:
-			fail("Wrong gender");
-			break;
+		if (testBunny.isMale()) {
+			assertEquals("Sex should match", true, testBunny.isMale());
+		} else {
+			assertEquals("Sex should match", false, testBunny.isMale());
 		}
 	}
 
 	@Test
 	public void testColor() {
-		FurColor color = testBunny.getColor();
+		FurColor color = this.testBunny.getColor();
 		switch (color) {
 		case black:
 			assertEquals("Color should match", FurColor.black, color);
@@ -66,7 +58,7 @@ public class BunnyTest {
 
 	@Test
 	public void testAge() {
-		int age = testBunny.getAge();
+		int age = this.testBunny.getAge();
 		assertTrue("Age should match", 0 <= age && age <= 10);
 	}
 

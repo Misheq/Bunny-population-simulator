@@ -6,7 +6,7 @@ public class Bunny {
 
 	private String name;
 	private FurColor color;
-	private Gender sex;
+	private boolean isMale;
 	private int age;
 	private boolean isVampire;
 	private boolean isMature;
@@ -14,12 +14,24 @@ public class Bunny {
 	private static final String MALE_NAMES[] = { "Abel", "Nyusz", "Kevin", "Frodo", "Batman", "Pistike", "Jancsika", "Kiskiraly", "Zambo" };
 	private static final String FEMALE_NAMES[] = { "Puffi", "Cunci", "Anna", "Gyulcsika", "Bozsike", "Alexa", "Tincsike", "Maris", "Duduka" };
 
+	public Bunny(String init) {
+		if (init.equals("init")) {
+			setColor();
+			setVampire();
+			setAge();
+			setSex();
+			setName();
+		} else {
+			System.out.println("FAILURE, write init");
+		}
+	}
+
 	public Bunny() {
+		this.age = 0;
+		setVampire();
 		setColor();
-		setAge();
 		setSex();
 		setName();
-		setVampire();
 	}
 
 	public String getName() {
@@ -29,17 +41,13 @@ public class Bunny {
 	private void setName() {
 		Random rnd = new Random();
 		int index;
-		switch (getSex()) {
-		case Male:
+
+		if (this.isMale) {
 			index = rnd.nextInt(MALE_NAMES.length);
 			this.name = MALE_NAMES[index];
-			break;
-		case Female:
+		} else {
 			index = rnd.nextInt(FEMALE_NAMES.length);
 			this.name = FEMALE_NAMES[index];
-			break;
-		default:
-			break;
 		}
 	}
 
@@ -55,8 +63,8 @@ public class Bunny {
 		this.color = colors[random];
 	}
 
-	public Gender getSex() {
-		return this.sex;
+	public boolean isMale() {
+		return this.isMale;
 	}
 
 	private void setSex() {
@@ -64,9 +72,9 @@ public class Bunny {
 		int random = rnd.nextInt(2);
 
 		if (random == 0) {
-			this.sex = Gender.Male;
+			this.isMale = true;
 		} else {
-			this.sex = Gender.Female;
+			this.isMale = false;
 		}
 	}
 
@@ -102,7 +110,7 @@ public class Bunny {
 	}
 
 	public void setMature(int age) {
-		this.isMature = age >= 2;
+		this.isMature = age >= 2 && !this.isVampire;
 	}
 
 	public void addAge() {
@@ -112,7 +120,7 @@ public class Bunny {
 
 	@Override
 	public String toString() {
-		return getName() + " " + getSex() + " " + getColor() + " " + getAge() + (this.isVampire ? " Vamp" : "") + (this.isMature ? " Mature" : " Juvenile");
+		return getName() + " " + (this.isMale ? "Male" : "Female") + " " + getColor() + " " + getAge() + (this.isVampire ? " Vamp" : "") + (this.isMature ? " Mature" : " Juvenile");
 	}
 
 }

@@ -16,7 +16,7 @@ public class SimulatorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.testBunny = new Bunny();
+		this.testBunny = new Bunny("init");
 		this.testBunnyList = new ArrayList<>();
 	}
 

@@ -4,6 +4,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		Simulator.initialBunnies();
-		Simulator.increaseAge();
+
+		while (Simulator.bunnyList.size() != 0 && Simulator.bunnyList.size() < 10000) {
+			Simulator.increaseAge();
+			Simulator.reproduce();
+		}
 	}
 }
