@@ -1,13 +1,11 @@
 package unitTests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import bussiness_code.Bunny;
@@ -20,7 +18,7 @@ public class BunnyTest {
 
 	@Before
 	public void before() {
-		testBunny = new Bunny("Bela");
+		testBunny = new Bunny();
 	}
 
 	@After
@@ -42,13 +40,6 @@ public class BunnyTest {
 			fail("Wrong gender");
 			break;
 		}
-	}
-
-	@Ignore
-	@Test
-	public void testName() {
-		String name = testBunny.getName();
-		assertEquals("Name should match", "Bela", name);
 	}
 
 	@Test
@@ -77,13 +68,6 @@ public class BunnyTest {
 	public void testAge() {
 		int age = testBunny.getAge();
 		assertTrue("Age should match", 0 <= age && age <= 10);
-	}
-
-	@Ignore
-	@Test
-	public void testIsVampire() {
-		boolean isVampire = testBunny.isVampire();
-		assertFalse("IsVampire should be false", isVampire);
 	}
 
 }

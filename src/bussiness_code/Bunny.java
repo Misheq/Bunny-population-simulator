@@ -9,19 +9,21 @@ public class Bunny {
 	private Gender sex;
 	private int age;
 	private boolean isVampire;
+	private boolean isMature;
+
 	private static final String MALE_NAMES[] = { "Abel", "Nyusz", "Kevin", "Frodo", "Batman", "Pistike", "Jancsika", "Kiskiraly", "Zambo" };
 	private static final String FEMALE_NAMES[] = { "Puffi", "Cunci", "Anna", "Gyulcsika", "Bozsike", "Alexa", "Tincsike", "Maris", "Duduka" };
 
-	public Bunny(String name) {
+	public Bunny() {
 		setColor();
 		setAge();
 		setSex();
 		setName();
-
+		setVampire();
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	private void setName() {
@@ -42,7 +44,7 @@ public class Bunny {
 	}
 
 	public FurColor getColor() {
-		return color;
+		return this.color;
 	}
 
 	private void setColor() {
@@ -54,12 +56,12 @@ public class Bunny {
 	}
 
 	public Gender getSex() {
-		return sex;
+		return this.sex;
 	}
 
 	private void setSex() {
 		Random rnd = new Random();
-		int random = rnd.nextInt();
+		int random = rnd.nextInt(2);
 
 		if (random == 0) {
 			this.sex = Gender.Male;
@@ -69,7 +71,7 @@ public class Bunny {
 	}
 
 	public int getAge() {
-		return age;
+		return this.age;
 	}
 
 	private void setAge() {
@@ -77,10 +79,11 @@ public class Bunny {
 		int random = rnd.nextInt(11);
 
 		this.age = random;
+		setMature(this.age);
 	}
 
 	public boolean isVampire() {
-		return isVampire;
+		return this.isVampire;
 	}
 
 	public void setVampire() {
@@ -92,6 +95,24 @@ public class Bunny {
 		} else {
 			this.isVampire = false;
 		}
+	}
+
+	public boolean isMature() {
+		return this.isMature;
+	}
+
+	public void setMature(int age) {
+		this.isMature = age >= 2;
+	}
+
+	public void addAge() {
+		this.age++;
+		setMature(this.age);
+	}
+
+	@Override
+	public String toString() {
+		return getName() + " " + getSex() + " " + getColor() + " " + getAge() + (this.isVampire ? " Vamp" : "") + (this.isMature ? " Mature" : " Juvenile");
 	}
 
 }
